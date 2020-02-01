@@ -6,6 +6,16 @@ const mockRequest = supertest(server);
 
 
 describe('My Kawaii Server !' , ()=> {
+  it('timeStamp middleware works !', () => {
+    return mockRequest
+      .get('/timeStamp')
+      .then(result => {
+        console.log('****************',result.text);
+        expect(typeof result.text).toEqual('string');
+      })
+      .catch(console.error);
+  });
+
 
   it('Responds With 404 Error For Wrong Routes', () => {
     return mockRequest
@@ -70,7 +80,6 @@ describe('My Kawaii Server !' , ()=> {
       .put('/products/the_boss')
       .send({monster: 'Tankichan'})
       .then(data => {
-        console.log(data.body);
         expect(data.status).toBe(200);
       });
   });
@@ -80,7 +89,6 @@ describe('My Kawaii Server !' , ()=> {
       .put('/products/the_boss')
       .send({monster: 'Tankichan'})
       .then(data => {
-        console.log(data.body);
         expect(data.body.monster).toBe('Tankichan');
       });
   });
@@ -138,7 +146,6 @@ describe('My Kawaii Server !' , ()=> {
       .put('/categories/the_boss')
       .send({monster: 'Tankichan'})
       .then(data => {
-        console.log(data.body);
         expect(data.status).toBe(200);
       });
   });
@@ -148,7 +155,6 @@ describe('My Kawaii Server !' , ()=> {
       .put('/categories/the_boss')
       .send({monster: 'Tankichan'})
       .then(data => {
-        console.log(data.body);
         expect(data.body.monster).toBe('Tankichan');
       });
   });
